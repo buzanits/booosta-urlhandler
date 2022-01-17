@@ -12,6 +12,8 @@ trait webapp
   {
     #\booosta\debug($_SERVER);
     $this->script_extension = '';   // override '.php'
+    $this->script_actionstr = '/';
+    $this->script_divider = '/';
 
     $this->self_raw = $this->self;
 
@@ -62,6 +64,7 @@ trait webapp
       unset($this->VAR['urlhandler_getparams']);
     endif;
 
+    $this->TPL['html_head'] .= "<base href='/'>";
     #\booosta\debug('$this->VAR:'); \booosta\debug($this->VAR);
   }
 }

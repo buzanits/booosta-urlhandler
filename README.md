@@ -1,7 +1,7 @@
-# User system for Booosta PHP Framework
+# Provide URLs without ? and & for parameters for Booosta PHP Framework
 
-This modules provides a user system for the Booosta webapp module. It provides the possibility to create
-users and admin users, administer them and let them log in.
+This modules provides a possibility to use URL without ?, = and & for the parameters. For example it replaces
+/customer.php?action=edit&object_id=7 with /customer/edit/7
 
 Booosta allows to develop PHP web applications quick. It is mainly designed for small web applications.
 It does not provide a strict MVC distinction. Although the MVC concepts influence the framework. Templates,
