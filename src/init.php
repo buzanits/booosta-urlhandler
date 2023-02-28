@@ -39,6 +39,10 @@ trait webapp
       $getparams = trim($getparams, '/');
       $params = explode('/', $getparams);
 
+      // let scriptname/new/{id} point to the supertable
+      if($this->supername && !isset($this->urlhandler_action_paramlist['new']))
+        $this->urlhandler_action_paramlist['new'] = "action/$this->supername";
+
       if(is_array($this->urlhandler_action_paramlist)):  // different params for different actions
         $action = $params[0];
         $plist = $this->urlhandler_action_paramlist[$action];
