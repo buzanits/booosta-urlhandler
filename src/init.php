@@ -1,7 +1,8 @@
 <?php
 namespace booosta\urlhandler;
 
-\booosta\Framework::add_module_trait('webapp', 'urlhandler\webapp');
+use \booosta\Framework as b;
+b::add_module_trait('webapp', 'urlhandler\webapp');
 
 trait webapp
 {
@@ -59,16 +60,19 @@ trait webapp
         $this->VAR = array_merge($this->VAR, $new_params);
 
         if($this->VAR['action']) $this->action = $this->VAR['action'];
-        if($this->VAR['object_id']) $this->id = intval($this->VAR['object_id']);;
+        if($this->VAR['object_id']) $this->id = $this->decID($this->VAR['object_id']);;
       else:
         if($this->VAR['action'] == '') $this->action = $this->VAR['action'] = $params[0];
-        if($this->VAR['object_id'] == '') $this->id = $this->VAR['object_id'] = intval($params[1]);;
+        if($this->VAR['object_id'] == '') $this->id = $this->VAR['object_id'] = $this->decID($params[1]);
+        if($this->VAR['form_token'] == '') $this->form_token = $this->VAR['form_token'] = $params[2];
+        #b::debug($params);
       endif;
 
+      if($this->id) $this->encid = $this->encID($this->id);
       unset($this->VAR['urlhandler_getparams']);
     endif;
 
     $this->TPL['html_head'] .= "<base href='/'>";
-    #\booosta\debug('$this->VAR:'); \booosta\debug($this->VAR);
+    #b::debug('$this->VAR:'); b::debug($this->VAR); b::debug("id: $this->id");
   }
 }
